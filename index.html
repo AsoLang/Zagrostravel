@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zagros Travel & Services - Kurdish Travel Agency London</title>
     <style>
+        /* Custom Kurdish Font */
+        @font-face {
+            font-family: 'KurdishFont';
+            src: url('kurdish-font.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        /* Apply Kurdish font to Kurdish text */
+        [dir="rtl"], 
+        [dir="rtl"] *,
+        .contact-label,
+        #subtitle,
+        h1,
+        .lang-btn.active {
+            font-family: 'KurdishFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
@@ -15,7 +34,13 @@
         /* Kurdish Flag Stripe */
         .flag-stripe { 
             height: 6px; 
-            background: linear-gradient(to right, #CE1126 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #007A3D 66.66%); 
+            background: linear-gradient(to right, 
+                #CE1126 0%, #CE1126 33.33%,
+                #FFFFFF 33.33%, #FFFFFF 46.5%,
+                #EAC102 46.5%, #EAC102 53.5%,
+                #FFFFFF 53.5%, #FFFFFF 66.66%,
+                #007A3D 66.66%, #007A3D 100%
+            );
             position: sticky;
             top: 0;
             z-index: 100;
@@ -90,59 +115,39 @@
             font-weight: 600;
         }
         
-        /* Language Switcher with Flags */
+        /* Language Switcher */
         .lang-switcher {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
+            background: rgba(255,255,255,0.15);
+            padding: 4px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
         }
         
-        .flag-btn {
-            width: 50px;
-            height: 35px;
-            border: 3px solid white;
+        .lang-btn {
+            padding: 8px 18px;
+            border: 2px solid transparent;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
         }
         
-        .flag-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
         }
         
-        .flag-btn.active {
-            border-color: #fbbf24;
-            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3);
-        }
-        
-        .flag-uk {
-            background: linear-gradient(to bottom, 
-                #012169 0%, #012169 33%, 
-                white 33%, white 66%, 
-                #C8102E 66%, #C8102E 100%);
-        }
-        
-        .flag-kurdistan {
-            background: linear-gradient(to bottom,
-                #CE1126 0%, #CE1126 33%,
-                white 33%, white 66%,
-                #007A3D 66%, #007A3D 100%);
-            position: relative;
-        }
-        
-        .flag-kurdistan::after {
-            content: '☀️';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 16px;
+        .lang-btn.active {
+            background: white;
+            color: #0c4a6e;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         
         /* Main Container */
@@ -282,98 +287,304 @@
             font-weight: 700;
         }
         
-        /* Contact Form Section */
+        /* Contact Form Section - Premium Redesign */
         .contact-section { 
-            background: white;
-            padding: 60px 50px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 0;
             border-radius: 30px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             margin: 60px 0;
+            overflow: hidden;
+        }
+        
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            min-height: 600px;
+        }
+        
+        .contact-info-panel {
+            background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
+            padding: 60px 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .contact-info-panel.rtl {
+            direction: rtl;
+            text-align: right;
+        }
+        
+        .contact-info-panel.rtl .contact-detail-item {
+            flex-direction: row-reverse;
+        }
+        
+        .contact-info-panel h3 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .contact-info-panel p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .contact-details-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .contact-detail-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-detail-content h4 {
+            font-size: 12px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .contact-detail-content p {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+            opacity: 1;
+        }
+        
+        .contact-detail-content a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .contact-detail-content a:hover {
+            opacity: 0.8;
+        }
+        
+        .contact-form-panel {
+            padding: 60px 50px;
+            background: white;
         }
         
         .social-links { 
-            text-align: center; 
-            margin: 40px 0 50px; 
+            text-align: left;
+            margin: 0 0 40px 0;
         }
         
         .social-links h3 {
-            font-size: 28px;
+            font-size: 18px;
             color: #0c4a6e;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-weight: 700;
+            text-align: left;
         }
         
         .social-btn { 
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: linear-gradient(135deg, #c026d3 0%, #e879f9 100%);
             color: white;
-            padding: 18px 40px;
+            padding: 12px 30px;
             border-radius: 50px;
             text-decoration: none;
-            margin: 10px;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 14px;
             transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(192, 38, 211, 0.3);
+            box-shadow: 0 4px 15px rgba(192, 38, 211, 0.3);
         }
         
         .social-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(192, 38, 211, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(192, 38, 211, 0.4);
         }
         
-        /* Form Styles */
+        /* Form Styles - Premium */
         .form-title {
-            text-align: center;
-            font-size: 32px;
+            font-size: 28px;
             color: #0c4a6e;
-            margin-bottom: 40px;
-            font-weight: 700;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-align: left;
+        }
+        
+        .form-subtitle {
+            font-size: 15px;
+            color: #64748b;
+            margin-bottom: 35px;
+            text-align: left;
+        }
+        
+        /* RTL Support for Kurdish Form */
+        .contact-form-panel.rtl .form-title,
+        .contact-form-panel.rtl .form-subtitle {
+            text-align: right;
+        }
+        
+        .contact-form-panel.rtl .form-group {
+            text-align: right;
+        }
+        
+        .contact-form-panel.rtl label {
+            text-align: right;
+            direction: rtl;
+        }
+        
+        .contact-form-panel.rtl input,
+        .contact-form-panel.rtl textarea {
+            text-align: right;
+            direction: rtl;
+        }
+        
+        .contact-form-panel.rtl button.submit-btn {
+            margin-right: 0;
+            margin-left: auto;
         }
         
         form { 
             display: grid; 
-            gap: 25px;
-            max-width: 700px;
-            margin: 0 auto;
+            gap: 20px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         input, textarea { 
             width: 100%;
-            padding: 18px 20px;
+            padding: 14px 18px;
             border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 15px;
             transition: all 0.3s;
             font-family: inherit;
+            background: #f8fafc;
         }
         
         input:focus, textarea:focus { 
             outline: none;
             border-color: #0891b2;
-            box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.1);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.08);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
         }
         
         button.submit-btn { 
             background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
             color: white;
-            padding: 20px;
+            padding: 18px 40px;
             border: none;
-            border-radius: 12px;
-            font-size: 18px;
+            border-radius: 10px;
+            font-size: 16px;
             cursor: pointer;
             font-weight: 700;
             transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(8, 145, 178, 0.3);
-            text-transform: uppercase;
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.3);
             letter-spacing: 0.5px;
+            margin-top: 10px;
+            width: fit-content;
         }
         
         button.submit-btn:hover { 
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(8, 145, 178, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(8, 145, 178, 0.4);
+        }
+        
+        /* Success Message - Premium */
+        #success-msg {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            color: #166534;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+            margin-top: 20px;
+            border: 2px solid #86efac;
+            font-weight: 600;
+            font-size: 14px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        #success-msg:not(.hidden) {
+            display: flex !important;
+        }
+        
+        #success-msg::before {
+            content: '✓';
+            width: 28px;
+            height: 28px;
+            background: #22c55e;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        /* Responsive Contact Section */
+        @media (max-width: 992px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info-panel {
+                padding: 50px 30px;
+            }
+            
+            .contact-form-panel {
+                padding: 50px 30px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
         
         /* Footer */
@@ -397,19 +608,8 @@
         }
         
         /* Utilities */
-        .hidden { display: none; }
-        
-        /* Success Message */
-        #success-msg {
-            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-            color: #166534;
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 25px;
-            border: 2px solid #86efac;
-            font-weight: 600;
-            font-size: 16px;
+        .hidden { 
+            display: none !important; 
         }
         
         /* Responsive */
@@ -419,7 +619,6 @@
             .contact-info { flex-direction: column; gap: 15px; }
             .top-bar-content { flex-direction: column; }
             .services { grid-template-columns: 1fr; }
-            .contact-section { padding: 40px 25px; }
         }
     </style>
 </head>
@@ -455,10 +654,10 @@
                 </div>
             </div>
             
-            <!-- Language Switcher with Flags -->
+            <!-- Language Switcher -->
             <div class="lang-switcher">
-                <div class="flag-btn flag-uk" id="flag-en" onclick="setLanguage('en')" title="English"></div>
-                <div class="flag-btn flag-kurdistan active" id="flag-ku" onclick="setLanguage('ku')" title="کوردی"></div>
+                <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">English</button>
+                <button class="lang-btn active" id="btn-ku" onclick="setLanguage('ku')">کوردی</button>
             </div>
         </div>
     </div>
@@ -467,7 +666,7 @@
         <!-- Hero Section -->
         <div class="hero">
             <img src="logo.png" alt="Zagros Travel" class="logo" onerror="this.style.display='none'">
-            <h1>Zagros Travel & Services</h1>
+            <h1>زاگرۆس تراڤل</h1>
             <p class="subtitle" id="subtitle">خزمەتگوزارییەکانی گەشت و بەڵگەنامە</p>
         </div>
 
@@ -512,7 +711,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🛂</div>
-                    <h3>ڤیزای شینگن و کوزار</h3>
+                    <h3>ڤیزای شینگن</h3>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">📄</div>
@@ -524,7 +723,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🚗</div>
-                    <h3>پێشوورانسی ئۆتۆمبیل</h3>
+                    <h3>ئینشورانسی ئۆتۆمبیل</h3>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🔄</div>
@@ -533,25 +732,84 @@
             </div>
         </div>
 
-        <!-- Contact Form Section -->
+        <!-- Contact Form Section - Premium Design -->
         <div class="contact-section">
-            <div class="social-links">
-                <h3 id="social-title">سۆشیال میدیا</h3>
-                <a href="https://instagram.com/zagrostravel" target="_blank" class="social-btn">
-                    📱 Instagram
-                </a>
-            </div>
-
-            <h3 class="form-title" id="contact-title">پەیوەندیمان پێوە بکە</h3>
-            <form onsubmit="handleSubmit(event)">
-                <input type="text" id="name" placeholder="ناو" required>
-                <input type="email" id="email" placeholder="ئیمەیل" required>
-                <input type="tel" id="phone" placeholder="ژمارەی تەلەفۆن">
-                <textarea id="message" rows="5" placeholder="پەیام" required></textarea>
-                <button type="submit" class="submit-btn" id="submit-btn">ناردن</button>
-            </form>
-            <div id="success-msg" class="hidden">
-                پەیامەکەت نێردرا! زۆر سوپاس
+            <div class="contact-wrapper">
+                <!-- Left Panel - Contact Info -->
+                <div class="contact-info-panel">
+                    <div>
+                        <h3 id="contact-panel-title">پەیوەندیمان پێوە بکە</h3>
+                        <p id="contact-panel-subtitle">ئێمە لێرەین بۆ یارمەتیدانت. پەیوەندیمان پێوە بکە لە ڕێگەی فۆرمەکە یان بەکارهێنانی زانیاریەکانی خوارەوە.</p>
+                        
+                        <div class="contact-details-list">
+                            <div class="contact-detail-item">
+                                <div class="contact-detail-icon">📞</div>
+                                <div class="contact-detail-content">
+                                    <h4 id="detail-phone">تەلەفۆن</h4>
+                                    <p><a href="tel:02039514091">020 3951 4091</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-detail-item">
+                                <div class="contact-detail-icon">✉️</div>
+                                <div class="contact-detail-content">
+                                    <h4 id="detail-email">ئیمەیل</h4>
+                                    <p><a href="mailto:info@zagrostravel.co.uk">info@zagrostravel.co.uk</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-detail-item">
+                                <div class="contact-detail-icon">📍</div>
+                                <div class="contact-detail-content">
+                                    <h4 id="detail-address">ناونیشان</h4>
+                                    <p>724 Leytonstone High Road<br>London E11 3AJ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h3 id="social-title">سۆشیال میدیا</h3>
+                        <a href="https://instagram.com/zagrostravel" target="_blank" class="social-btn">
+                            📱 Instagram
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Right Panel - Contact Form -->
+                <div class="contact-form-panel">
+                    <h3 class="form-title" id="form-main-title">پەیامێک بنێرە</h3>
+                    <p class="form-subtitle" id="form-main-subtitle">فۆرمەکە پڕ بکەوە و زۆر بەخێرایی وەڵامت دەدەینەوە.</p>
+                    
+                    <form action="https://formspree.io/f/xqeawwge" method="POST" onsubmit="handleSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" id="label-name">ناو</label>
+                                <input type="text" id="name" name="name" placeholder="ناوی تەواو" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" id="label-email">ئیمەیل</label>
+                                <input type="email" id="email" name="email" placeholder="ئیمەیلەکەت" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" id="label-phone">ژمارەی تەلەفۆن</label>
+                            <input type="tel" id="phone" name="phone" placeholder="ژمارەی تەلەفۆنەکەت">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" id="label-message">پەیام</label>
+                            <textarea id="message" name="message" placeholder="پەیامەکەت لێرە بنووسە..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="submit-btn">ناردنی پەیام</button>
+                    </form>
+                    
+                    <div id="success-msg" class="hidden">
+                        پەیامەکەت بە سەرکەوتوویی نێردرا! زۆر سوپاس
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -567,13 +825,33 @@
         function setLanguage(lang) {
             currentLang = lang;
             
-            // Toggle flag active states
-            document.getElementById('flag-en').classList.toggle('active', lang === 'en');
-            document.getElementById('flag-ku').classList.toggle('active', lang === 'ku');
+            // Toggle button active states
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-ku').classList.toggle('active', lang === 'ku');
             
             // Toggle content visibility
             document.getElementById('content-en').classList.toggle('hidden', lang !== 'en');
             document.getElementById('content-ku').classList.toggle('hidden', lang !== 'ku');
+            
+            // Toggle RTL for form panel
+            const formPanel = document.querySelector('.contact-form-panel');
+            const infoPanel = document.querySelector('.contact-info-panel');
+            
+            if (formPanel) {
+                if (lang === 'ku') {
+                    formPanel.classList.add('rtl');
+                } else {
+                    formPanel.classList.remove('rtl');
+                }
+            }
+            
+            if (infoPanel) {
+                if (lang === 'ku') {
+                    infoPanel.classList.add('rtl');
+                } else {
+                    infoPanel.classList.remove('rtl');
+                }
+            }
             
             // Update labels and text
             if (lang === 'ku') {
@@ -582,49 +860,100 @@
                 document.getElementById('phone-label').textContent = 'تەلەفۆن';
                 document.getElementById('email-label').textContent = 'ئیمەیل';
                 document.getElementById('location-label').textContent = 'ناونیشان';
+                
+                // Contact panel
+                document.getElementById('contact-panel-title').textContent = 'پەیوەندیمان پێوە بکە';
+                document.getElementById('contact-panel-subtitle').textContent = 'ئێمە لێرەین بۆ یارمەتیدانت. پەیوەندیمان پێوە بکە لە ڕێگەی فۆرمەکە یان بەکارهێنانی زانیاریەکانی خوارەوە.';
+                document.getElementById('detail-phone').textContent = 'تەلەفۆن';
+                document.getElementById('detail-email').textContent = 'ئیمەیل';
+                document.getElementById('detail-address').textContent = 'ناونیشان';
                 document.getElementById('social-title').textContent = 'سۆشیال میدیا';
-                document.getElementById('contact-title').textContent = 'پەیوەندیمان پێوە بکە';
-                document.getElementById('name').placeholder = 'ناو';
-                document.getElementById('email').placeholder = 'ئیمەیل';
-                document.getElementById('phone').placeholder = 'ژمارەی تەلەفۆن';
-                document.getElementById('message').placeholder = 'پەیام';
-                document.getElementById('submit-btn').textContent = 'ناردن';
-                document.getElementById('success-msg').textContent = 'پەیامەکەت نێردرا! زۆر سوپاس';
+                
+                // Form
+                document.getElementById('form-main-title').textContent = 'پەیامێک بنێرە';
+                document.getElementById('form-main-subtitle').textContent = 'فۆرمەکە پڕ بکەوە و زۆر بەخێرایی وەڵامت دەدەینەوە.';
+                document.getElementById('label-name').textContent = 'ناو';
+                document.getElementById('label-email').textContent = 'ئیمەیل';
+                document.getElementById('label-phone').textContent = 'ژمارەی تەلەفۆن';
+                document.getElementById('label-message').textContent = 'پەیام';
+                document.getElementById('name').placeholder = 'ناوی تەواو';
+                document.getElementById('email').placeholder = 'ئیمەیلەکەت';
+                document.getElementById('phone').placeholder = 'ژمارەی تەلەفۆنەکەت';
+                document.getElementById('message').placeholder = 'پەیامەکەت لێرە بنووسە...';
+                document.getElementById('submit-btn').textContent = 'ناردنی پەیام';
+                document.getElementById('success-msg').textContent = 'پەیامەکەت بە سەرکەوتوویی نێردرا! زۆر سوپاس';
             } else {
                 document.getElementById('subtitle').textContent = 'Your trusted partner for travel and documentation services';
                 document.getElementById('subtitle').dir = 'ltr';
                 document.getElementById('phone-label').textContent = 'Phone';
                 document.getElementById('email-label').textContent = 'Email';
                 document.getElementById('location-label').textContent = 'Location';
+                
+                // Contact panel
+                document.getElementById('contact-panel-title').textContent = 'Get In Touch';
+                document.getElementById('contact-panel-subtitle').textContent = 'We\'re here to help. Reach out to us via the form or use the contact information below.';
+                document.getElementById('detail-phone').textContent = 'Phone';
+                document.getElementById('detail-email').textContent = 'Email';
+                document.getElementById('detail-address').textContent = 'Address';
                 document.getElementById('social-title').textContent = 'Follow Us';
-                document.getElementById('contact-title').textContent = 'Get In Touch';
-                document.getElementById('name').placeholder = 'Name';
-                document.getElementById('email').placeholder = 'Email';
-                document.getElementById('phone').placeholder = 'Phone Number';
-                document.getElementById('message').placeholder = 'Message';
+                
+                // Form
+                document.getElementById('form-main-title').textContent = 'Send us a Message';
+                document.getElementById('form-main-subtitle').textContent = 'Fill out the form below and we\'ll get back to you as soon as possible.';
+                document.getElementById('label-name').textContent = 'Name';
+                document.getElementById('label-email').textContent = 'Email';
+                document.getElementById('label-phone').textContent = 'Phone Number';
+                document.getElementById('label-message').textContent = 'Message';
+                document.getElementById('name').placeholder = 'Your full name';
+                document.getElementById('email').placeholder = 'Your email address';
+                document.getElementById('phone').placeholder = 'Your phone number';
+                document.getElementById('message').placeholder = 'Write your message here...';
                 document.getElementById('submit-btn').textContent = 'Send Message';
-                document.getElementById('success-msg').textContent = 'Message sent successfully! Thank you.';
+                document.getElementById('success-msg').textContent = 'Your message has been sent successfully! Thank you.';
             }
         }
         
         function handleSubmit(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
+            const form = e.target;
+            const data = new FormData(form);
             
-            // You can integrate with email service here
-            console.log('Form submitted:', { name, email, phone, message });
+            // Show loading state
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = currentLang === 'ku' ? 'دەنێردرێت...' : 'Sending...';
+            submitBtn.disabled = true;
             
-            // Show success message
-            document.getElementById('success-msg').classList.remove('hidden');
-            e.target.reset();
-            
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                document.getElementById('success-msg').classList.add('hidden');
-            }, 5000);
+            fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('success-msg').classList.remove('hidden');
+                    form.reset();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        document.getElementById('success-msg').classList.add('hidden');
+                    }, 5000);
+                } else {
+                    response.json().then(data => {
+                        if (data.errors) {
+                            alert(currentLang === 'ku' ? 'هەڵەیەک ڕوویدا. تکایە دووبارە هەوڵ بدەرەوە.' : 'An error occurred. Please try again.');
+                        }
+                    });
+                }
+            }).catch(error => {
+                alert(currentLang === 'ku' ? 'هەڵەیەک ڕوویدا. تکایە دووبارە هەوڵ بدەرەوە.' : 'An error occurred. Please try again.');
+            }).finally(() => {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         }
         
         // Initialize with Kurdish language
