@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zagros Travel & Services - Kurdish Travel Agency London</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+        }
+        
+        /* Kurdish Flag Stripe */
+        .flag-stripe { 
+            height: 6px; 
+            background: linear-gradient(to right, #CE1126 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #007A3D 66.66%); 
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        /* Top Contact Bar */
+        .top-bar {
+            background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .top-bar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+        
+        .contact-item-top:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .contact-icon-top {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .contact-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .contact-label {
+            font-size: 11px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-value {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        /* Language Switcher with Flags */
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .flag-btn {
+            width: 50px;
+            height: 35px;
+            border: 3px solid white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flag-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .flag-btn.active {
+            border-color: #fbbf24;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3);
+        }
+        
+        .flag-uk {
+            background: linear-gradient(to bottom, 
+                #012169 0%, #012169 33%, 
+                white 33%, white 66%, 
+                #C8102E 66%, #C8102E 100%);
+        }
+        
+        .flag-kurdistan {
+            background: linear-gradient(to bottom,
+                #CE1126 0%, #CE1126 33%,
+                white 33%, white 66%,
+                #007A3D 66%, #007A3D 100%);
+            position: relative;
+        }
+        
+        .flag-kurdistan::after {
+            content: '☀️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+        }
+        
+        /* Main Container */
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 30px; 
+        }
+        
+        /* Hero Section */
+        .hero { 
+            text-align: center; 
+            padding: 60px 40px; 
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+            border-radius: 30px; 
+            margin-bottom: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(8,145,178,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .logo { 
+            width: 220px; 
+            height: 220px; 
+            margin: 0 auto 30px;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.15));
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 { 
+            font-size: 56px; 
+            color: #0c4a6e; 
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle { 
+            font-size: 22px; 
+            color: #64748b;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Services Section */
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            color: #0c4a6e;
+            margin-bottom: 50px;
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #0891b2, #06b6d4);
+            border-radius: 2px;
+        }
+        
+        .services { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; 
+            margin: 60px 0; 
+        }
+        
+        .service-card { 
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0891b2, #06b6d4);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover { 
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(8,145,178,0.2);
+            border-color: #0891b2;
+        }
+        
+        .service-icon { 
+            font-size: 56px; 
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.4s;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .service-card h3 {
+            font-size: 20px;
+            color: #1e293b;
+            font-weight: 700;
+        }
+        
+        /* Contact Form Section */
+        .contact-section { 
+            background: white;
+            padding: 60px 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin: 60px 0;
+        }
+        
+        .social-links { 
+            text-align: center; 
+            margin: 40px 0 50px; 
+        }
+        
+        .social-links h3 {
+            font-size: 28px;
+            color: #0c4a6e;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        
+        .social-btn { 
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #c026d3 0%, #e879f9 100%);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(192, 38, 211, 0.3);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(192, 38, 211, 0.4);
+        }
+        
+        /* Form Styles */
+        .form-title {
+            text-align: center;
+            font-size: 32px;
+            color: #0c4a6e;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+        
+        form { 
+            display: grid; 
+            gap: 25px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        input, textarea { 
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        
+        input:focus, textarea:focus { 
+            outline: none;
+            border-color: #0891b2;
+            box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.1);
+        }
+        
+        button.submit-btn { 
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(8, 145, 178, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        button.submit-btn:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(8, 145, 178, 0.4);
+        }
+        
+        /* Footer */
+        footer { 
+            background: linear-gradient(135deg, #0c4a6e 0%, #1e293b 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 30px;
+            margin-top: 80px;
+        }
+        
+        footer p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        
+        /* Utilities */
+        .hidden { display: none; }
+        
+        /* Success Message */
+        #success-msg {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            color: #166534;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 25px;
+            border: 2px solid #86efac;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 38px; }
+            .section-title { font-size: 32px; }
+            .contact-info { flex-direction: column; gap: 15px; }
+            .top-bar-content { flex-direction: column; }
+            .services { grid-template-columns: 1fr; }
+            .contact-section { padding: 40px 25px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="flag-stripe"></div>
+    
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="contact-info">
+                <a href="tel:02039514091" class="contact-item-top">
+                    <div class="contact-icon-top">📞</div>
+                    <div class="contact-text">
+                        <span class="contact-label" id="phone-label">تەلەفۆن</span>
+                        <span class="contact-value">020 3951 4091</span>
+                    </div>
+                </a>
+                
+                <a href="mailto:info@zagrostravel.co.uk" class="contact-item-top">
+                    <div class="contact-icon-top">✉️</div>
+                    <div class="contact-text">
+                        <span class="contact-label" id="email-label">ئیمەیل</span>
+                        <span class="contact-value">info@zagrostravel.co.uk</span>
+                    </div>
+                </a>
+                
+                <div class="contact-item-top">
+                    <div class="contact-icon-top">📍</div>
+                    <div class="contact-text">
+                        <span class="contact-label" id="location-label">ناونیشان</span>
+                        <span class="contact-value">724 Leytonstone High Road, E11 3AJ</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Language Switcher with Flags -->
+            <div class="lang-switcher">
+                <div class="flag-btn flag-uk" id="flag-en" onclick="setLanguage('en')" title="English"></div>
+                <div class="flag-btn flag-kurdistan active" id="flag-ku" onclick="setLanguage('ku')" title="کوردی"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <img src="logo.png" alt="Zagros Travel" class="logo" onerror="this.style.display='none'">
+            <h1>Zagros Travel & Services</h1>
+            <p class="subtitle" id="subtitle">خزمەتگوزارییەکانی گەشت و بەڵگەنامە</p>
+        </div>
+
+        <!-- Services Section - English -->
+        <div id="content-en" class="hidden">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>Flight Tickets</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛂</div>
+                    <h3>Schengen & Travel Visas</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📄</div>
+                    <h3>Documents & Forms</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌍</div>
+                    <h3>Immigration Services</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>Driver License Assistance</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>Translation Services</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section - Kurdish -->
+        <div id="content-ku" dir="rtl">
+            <h2 class="section-title">خزمەتگوزارییەکانمان</h2>
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>بلیتی فڕۆکە</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛂</div>
+                    <h3>ڤیزای شینگن و کوزار</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📄</div>
+                    <h3>بەڵگەنامە و فۆرم</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌍</div>
+                    <h3>کاروباری کۆچبەری</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>پێشوورانسی ئۆتۆمبیل</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>وەرگێڕان</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="contact-section">
+            <div class="social-links">
+                <h3 id="social-title">سۆشیال میدیا</h3>
+                <a href="https://instagram.com/zagrostravel" target="_blank" class="social-btn">
+                    📱 Instagram
+                </a>
+            </div>
+
+            <h3 class="form-title" id="contact-title">پەیوەندیمان پێوە بکە</h3>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" id="name" placeholder="ناو" required>
+                <input type="email" id="email" placeholder="ئیمەیل" required>
+                <input type="tel" id="phone" placeholder="ژمارەی تەلەفۆن">
+                <textarea id="message" rows="5" placeholder="پەیام" required></textarea>
+                <button type="submit" class="submit-btn" id="submit-btn">ناردن</button>
+            </form>
+            <div id="success-msg" class="hidden">
+                پەیامەکەت نێردرا! زۆر سوپاس
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Zagros Travel & Services</p>
+        <p class="footer-links">www.zagrostravel.co.uk</p>
+    </footer>
+
+    <script>
+        let currentLang = 'ku'; // Default to Kurdish
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Toggle flag active states
+            document.getElementById('flag-en').classList.toggle('active', lang === 'en');
+            document.getElementById('flag-ku').classList.toggle('active', lang === 'ku');
+            
+            // Toggle content visibility
+            document.getElementById('content-en').classList.toggle('hidden', lang !== 'en');
+            document.getElementById('content-ku').classList.toggle('hidden', lang !== 'ku');
+            
+            // Update labels and text
+            if (lang === 'ku') {
+                document.getElementById('subtitle').textContent = 'خزمەتگوزارییەکانی گەشت و بەڵگەنامە';
+                document.getElementById('subtitle').dir = 'rtl';
+                document.getElementById('phone-label').textContent = 'تەلەفۆن';
+                document.getElementById('email-label').textContent = 'ئیمەیل';
+                document.getElementById('location-label').textContent = 'ناونیشان';
+                document.getElementById('social-title').textContent = 'سۆشیال میدیا';
+                document.getElementById('contact-title').textContent = 'پەیوەندیمان پێوە بکە';
+                document.getElementById('name').placeholder = 'ناو';
+                document.getElementById('email').placeholder = 'ئیمەیل';
+                document.getElementById('phone').placeholder = 'ژمارەی تەلەفۆن';
+                document.getElementById('message').placeholder = 'پەیام';
+                document.getElementById('submit-btn').textContent = 'ناردن';
+                document.getElementById('success-msg').textContent = 'پەیامەکەت نێردرا! زۆر سوپاس';
+            } else {
+                document.getElementById('subtitle').textContent = 'Your trusted partner for travel and documentation services';
+                document.getElementById('subtitle').dir = 'ltr';
+                document.getElementById('phone-label').textContent = 'Phone';
+                document.getElementById('email-label').textContent = 'Email';
+                document.getElementById('location-label').textContent = 'Location';
+                document.getElementById('social-title').textContent = 'Follow Us';
+                document.getElementById('contact-title').textContent = 'Get In Touch';
+                document.getElementById('name').placeholder = 'Name';
+                document.getElementById('email').placeholder = 'Email';
+                document.getElementById('phone').placeholder = 'Phone Number';
+                document.getElementById('message').placeholder = 'Message';
+                document.getElementById('submit-btn').textContent = 'Send Message';
+                document.getElementById('success-msg').textContent = 'Message sent successfully! Thank you.';
+            }
+        }
+        
+        function handleSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            // You can integrate with email service here
+            console.log('Form submitted:', { name, email, phone, message });
+            
+            // Show success message
+            document.getElementById('success-msg').classList.remove('hidden');
+            e.target.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('success-msg').classList.add('hidden');
+            }, 5000);
+        }
+        
+        // Initialize with Kurdish language
+        setLanguage('ku');
+    </script>
+</body>
+</html>
